@@ -129,6 +129,22 @@
   border-radius: 10px;
   box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
+    .photo-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.memory {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease;
+}
   </style>
 </head>
 <body>
@@ -265,6 +281,36 @@
     }
 
     setInterval(createHeart, 400);
+    // Scrapbook rotation + tap to expand
+document.querySelectorAll(".memory").forEach(img => {
+  // Random slight rotation
+  const rotation = Math.random() * 10 - 5; // -5deg to +5deg
+  img.style.transform = `rotate(${rotation}deg)`;
+
+  // Tap / click to expand
+  img.addEventListener("click", () => {
+    const overlay = document.createElement("div");
+    overlay.style.position = "fixed";
+    overlay.style.inset = "0";
+    overlay.style.background = "rgba(0,0,0,0.7)";
+    overlay.style.display = "flex";
+    overlay.style.alignItems = "center";
+    overlay.style.justifyContent = "center";
+    overlay.style.zIndex = "10";
+
+    const bigImg = document.createElement("img");
+    bigImg.src = img.src;
+    bigImg.style.maxWidth = "90%";
+    bigImg.style.maxHeight = "90%";
+    bigImg.style.borderRadius = "16px";
+    bigImg.style.boxShadow = "0 10px 30px rgba(0,0,0,0.4)";
+
+    overlay.appendChild(bigImg);
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener("click", () => overlay.remove());
+  });
+});
   </script>
 
 </body>
