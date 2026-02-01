@@ -56,18 +56,17 @@
       color: white;
     }
 
-    /* Love letter modal */
     .letter {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
-  z-index: 5;
-  padding: 20px;
-  overflow-y: auto; /* 👈 THIS IS THE KEY */
-}
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 5;
+      padding: 20px;
+      overflow-y: auto;
+    }
 
     .letter-content {
       background: white;
@@ -75,10 +74,6 @@
       max-width: 320px;
       border-radius: 15px;
       line-height: 1.6;
-    }
-
-    .letter-content h2 {
-      text-align: center;
     }
 
     .close-btn {
@@ -93,255 +88,162 @@
       font-size: 16px;
     }
 
-    /* Floating hearts */
+    .photo-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .memory {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
     .heart {
       position: fixed;
       bottom: -20px;
-      font-size: 20px;
       animation: floatUp linear forwards;
       opacity: 0.8;
     }
 
     @keyframes floatUp {
-      from {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-110vh);
-        opacity: 0;
-      }
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-110vh); opacity: 0; }
     }
-    /* Photo grid for love letter images */
-/* FORCE smaller love-letter images */
-.photo-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.photo-grid img {
-  width: 80px !important;
-  height: 80px !important;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-}
-    .photo-strip {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.memory {
-  width: 90px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
   </style>
 </head>
+
 <body>
 
-  <div class="container">
-    <h1 id="question">Will you be my Valentine? 💖</h1>
-
-    <div class="buttons">
-      <button id="yes">Yes 💘</button>
-      <button id="no">No 😢</button>
-    </div>
+<div class="container">
+  <h1>Will you be my Valentine? 💖</h1>
+  <div class="buttons">
+    <button id="yes">Yes 💘</button>
+    <button id="no">No 😢</button>
   </div>
-
-  <!-- Love Letter -->
-  <div class="letter" id="letter">
-    <div class="letter-content">
-  <h2>💌 My Love</h2>
-
-  <div style="
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:10px;
-  margin-bottom:16px;
-">
-  <div class="photo-strip">
-  <img src="images/image0.jpg" class="memory">
-  <img src="images/image1.jpg" class="memory">
-  <img src="images/image4.jpg" class="memory">
-  <img src="images/image2.jpg" class="memory">
-  <img src="images/image5.jpg" class="memory">
 </div>
-</div>
-  <p>
-        I know this is a little silly my lovie, but I wanted to ask you in a way
-        that felt like me. Y'know, something fun, thoughtful, and made just for my baby.
-      </p>
-      <p>
-        You make my days brighter, my laughs louder, and my life so much better
-        just by being in it. I feel incredibly lucky to love you.
-      </p>
-      <p>
-        Thank you for choosing me, today and every day.  
-        Happy Valentine’s Day 💜
-      </p>
-      <p style="text-align:right;">— Your handsome baby boy, Nick 😊 💕</p>
-      <button class="close-btn" onclick="document.getElementById('letter').style.display='none'">
-        Close 💖
-      </button>
+
+<div class="letter" id="letter">
+  <div class="letter-content">
+    <h2>💌 My Love</h2>
+
+    <div class="photo-strip">
+      <img src="images/image0.jpg" class="memory">
+      <img src="images/image1.jpg" class="memory">
+      <img src="images/image4.jpg" class="memory">
+      <img src="images/image2.jpg" class="memory">
+      <img src="images/image5.jpg" class="memory">
     </div>
+
+    <p>
+      I know this is a little silly my lovie, but I wanted to ask you in a way
+      that felt like me — something fun, thoughtful, and made just for my baby.
+    </p>
+    <p>
+      You make my days brighter, my laughs louder, and my life so much better
+      just by being in it. I feel incredibly lucky to love you.
+    </p>
+    <p>Happy Valentine’s Day 💜</p>
+    <p style="text-align:right;">— Your handsome baby boy, Nick 😊 💕</p>
+
+    <button class="close-btn" onclick="letter.style.display='none'">Close 💖</button>
   </div>
+</div>
 
-  <script>
-    const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
-    const letter = document.getElementById("letter");
+<script>
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
+  const letter = document.getElementById("letter");
 
-    let scale = 1;
-    let noClickable = false;
+  let scale = 1;
+  let noClickable = false;
 
-    function moveNoButton() {
-      if (noClickable) return;
-
-      const x = Math.random() * 240;
-      const y = Math.random() * 160;
-      noBtn.style.left = `${x}px`;
-      noBtn.style.top = `${y}px`;
-
-      scale -= 0.1;
-      if (scale <= 0.3) {
-        scale = 0.3;
-        noClickable = true;
-        noBtn.style.transform = `scale(${scale})`;
-        noBtn.style.cursor = "pointer";
-        return;
-      }
-
-      noBtn.style.transform = `scale(${scale})`;
+  function moveNoButton() {
+    if (noClickable) return;
+    noBtn.style.left = Math.random() * 240 + "px";
+    noBtn.style.top = Math.random() * 160 + "px";
+    scale -= 0.1;
+    if (scale <= 0.3) {
+      scale = 0.3;
+      noClickable = true;
     }
+    noBtn.style.transform = `scale(${scale})`;
+  }
 
-    // Desktop + Mobile
-    noBtn.addEventListener("mouseover", moveNoButton);
-    noBtn.addEventListener("touchstart", moveNoButton);
+  noBtn.addEventListener("mouseover", moveNoButton);
+  noBtn.addEventListener("touchstart", moveNoButton);
 
-    // When NO is finally clicked
-    noBtn.addEventListener("click", () => {
-      if (!noClickable) return;
+  noBtn.addEventListener("click", () => {
+    if (!noClickable) return;
+    const modal = document.createElement("div");
+    modal.className = "letter";
+    modal.style.display = "flex";
+    modal.innerHTML = `
+      <div class="letter-content" style="text-align:center;">
+        <h2>Nope 😌</h2>
+        <img src="images/image3.jpg" style="max-width:300px;border-radius:14px;">
+        <p>Nice try. You know there’s only one right answer.</p>
+        <button class="close-btn">Try Again 💘</button>
+      </div>`;
+    document.body.appendChild(modal);
+    modal.onclick = () => modal.remove();
+  });
 
-      const modal = document.createElement("div");
-      modal.className = "letter";
-      modal.style.display = "flex";
-      modal.innerHTML = `
-  <div class="letter-content" style="text-align:center;">
-    <h2>Nope 😌</h2>
+  yesBtn.onclick = () => {
+    letter.style.display = "flex";
 
-    <img src="images/image3.jpg" style="
-      width:100%;
-      max-width:300px;
-      border-radius:14px;
-      margin:15px 0;
-      box-shadow:0 6px 15px rgba(0,0,0,0.3);
-    ">
+    document.querySelectorAll(".memory").forEach(img => {
+      const rotation = Math.random() * 10 - 5;
+      img.style.transform = `rotate(${rotation}deg)`;
 
-    <p>Nice try. You know there’s only one right answer.</p>
-    <button class="close-btn" id="tryAgain">Try Again 💘</button>
-  </div>
-`;
-      document.body.appendChild(modal);
+      img.onclick = () => {
+        letter.style.pointerEvents = "none";
 
-      document.getElementById("tryAgain").onclick = () => {
-        modal.remove();
+        const overlay = document.createElement("div");
+        overlay.style.position = "fixed";
+        overlay.style.inset = "0";
+        overlay.style.background = "rgba(0,0,0,0.75)";
+        overlay.style.display = "flex";
+        overlay.style.alignItems = "center";
+        overlay.style.justifyContent = "center";
+        overlay.style.zIndex = "999";
+
+        const bigImg = document.createElement("img");
+        bigImg.src = img.src;
+        bigImg.style.maxWidth = "90%";
+        bigImg.style.maxHeight = "90%";
+        bigImg.style.borderRadius = "16px";
+        bigImg.style.pointerEvents = "none";
+
+        overlay.appendChild(bigImg);
+        document.body.appendChild(overlay);
+
+        overlay.onclick = () => {
+          overlay.remove();
+          letter.style.pointerEvents = "auto";
+        };
       };
     });
+  };
 
-    // YES button
-    yesBtn.addEventListener("click", () => {
-  letter.style.display = "flex";
-
-  // Apply scrapbook effects AFTER modal opens
-  document.querySelectorAll(".memory").forEach(img => {
-    // Slight random rotation
-    const rotation = Math.random() * 10 - 5; // -5° to +5°
-    img.style.transform = `rotate(${rotation}deg)`;
-
-    // Tap / click to enlarge
-    img.onclick = () => {
-      const overlay = document.createElement("div");
-      overlay.style.position = "fixed";
-      overlay.style.inset = "0";
-      overlay.style.background = "rgba(0,0,0,0.75)";
-      overlay.style.display = "flex";
-      overlay.style.alignItems = "center";
-      overlay.style.justifyContent = "center";
-      overlay.style.zIndex = "20";
-
-      const bigImg = document.createElement("img");
-      bigImg.src = img.src;
-      bigImg.style.maxWidth = "90%";
-      bigImg.style.maxHeight = "90%";
-      bigImg.style.borderRadius = "16px";
-      bigImg.style.boxShadow = "0 10px 30px rgba(0,0,0,0.4)";
-      bigImg.style.pointerEvents = "none";
-
-      overlay.appendChild(bigImg);
-document.body.appendChild(overlay);
-
-// Close when clicking background OR image
-overlay.onclick = () => overlay.remove();
-    };
-  });
-});
-    // Floating purple hearts 💜
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerText = "💜";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 4 + Math.random() * 4 + "s";
-      heart.style.fontSize = 16 + Math.random() * 20 + "px";
-      document.body.appendChild(heart);
-
-      setTimeout(() => heart.remove(), 8000);
-    }
-
-    setInterval(createHeart, 400);
-    // Scrapbook rotation + tap to expand
-document.querySelectorAll(".memory").forEach(img => {
-  // Random slight rotation
-  const rotation = Math.random() * 10 - 5; // -5deg to +5deg
-  img.style.transform = `rotate(${rotation}deg)`;
-
-  // Tap / click to expand
-  img.addEventListener("click", () => {
-    const overlay = document.createElement("div");
-    overlay.style.position = "fixed";
-    overlay.style.inset = "0";
-    overlay.style.background = "rgba(0,0,0,0.7)";
-    overlay.style.display = "flex";
-    overlay.style.alignItems = "center";
-    overlay.style.justifyContent = "center";
-    overlay.style.zIndex = "10";
-
-    const bigImg = document.createElement("img");
-    bigImg.src = img.src;
-    bigImg.style.maxWidth = "90%";
-    bigImg.style.maxHeight = "90%";
-    bigImg.style.borderRadius = "16px";
-    bigImg.style.boxShadow = "0 10px 30px rgba(0,0,0,0.4)";
-
-    overlay.appendChild(bigImg);
-    document.body.appendChild(overlay);
-
-    overlay.addEventListener("click", () => overlay.remove());
-  });
-});
-  </script>
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💜";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = 16 + Math.random() * 20 + "px";
+    heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+  }, 400);
+</script>
 
 </body>
 </html>
