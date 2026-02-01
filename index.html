@@ -287,13 +287,13 @@
       bigImg.style.maxHeight = "90%";
       bigImg.style.borderRadius = "16px";
       bigImg.style.boxShadow = "0 10px 30px rgba(0,0,0,0.4)";
+      bigImg.style.pointerEvents = "none";
 
       overlay.appendChild(bigImg);
 document.body.appendChild(overlay);
 
 // Close when clicking background OR image
 overlay.onclick = () => overlay.remove();
-bigImg.onclick = () => overlay.remove();
     };
   });
 });
