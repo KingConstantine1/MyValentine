@@ -264,9 +264,39 @@
 
     // YES button
     yesBtn.addEventListener("click", () => {
-      letter.style.display = "flex";
-    });
+  letter.style.display = "flex";
 
+  // Apply scrapbook effects AFTER modal opens
+  document.querySelectorAll(".memory").forEach(img => {
+    // Slight random rotation
+    const rotation = Math.random() * 10 - 5; // -5° to +5°
+    img.style.transform = `rotate(${rotation}deg)`;
+
+    // Tap / click to enlarge
+    img.onclick = () => {
+      const overlay = document.createElement("div");
+      overlay.style.position = "fixed";
+      overlay.style.inset = "0";
+      overlay.style.background = "rgba(0,0,0,0.75)";
+      overlay.style.display = "flex";
+      overlay.style.alignItems = "center";
+      overlay.style.justifyContent = "center";
+      overlay.style.zIndex = "20";
+
+      const bigImg = document.createElement("img");
+      bigImg.src = img.src;
+      bigImg.style.maxWidth = "90%";
+      bigImg.style.maxHeight = "90%";
+      bigImg.style.borderRadius = "16px";
+      bigImg.style.boxShadow = "0 10px 30px rgba(0,0,0,0.4)";
+
+      overlay.appendChild(bigImg);
+      document.body.appendChild(overlay);
+
+      overlay.onclick = () => overlay.remove();
+    };
+  });
+});
     // Floating purple hearts 💜
     function createHeart() {
       const heart = document.createElement("div");
