@@ -289,9 +289,11 @@
       bigImg.style.boxShadow = "0 10px 30px rgba(0,0,0,0.4)";
 
       overlay.appendChild(bigImg);
-      document.body.appendChild(overlay);
+document.body.appendChild(overlay);
 
-      overlay.onclick = () => overlay.remove();
+// Close when clicking background OR image
+overlay.onclick = () => overlay.remove();
+bigImg.onclick = () => overlay.remove();
     };
   });
 });
