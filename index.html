@@ -127,8 +127,17 @@
   <!-- Love Letter -->
   <div class="letter" id="letter">
     <div class="letter-content">
-      <h2>💌 My Love</h2>
-      <p>
+  <h2>💌 My Love</h2>
+
+  <!-- Photo Grid -->
+  <div class="photo-grid">
+    <img src="images/image0.jpg" alt="💜">
+    <img src="images/image1.jpg" alt="💜">
+    <img src="images/image2.jpg" alt="💜">
+    <img src="images/image4.jpg" alt="💜">
+    <img src="images/image5.jpg" alt="💜">
+  </div>
+  <p>
         I know this is a little silly my lovie, but I wanted to ask you in a way
         that felt like me. Y'know, something fun, thoughtful, and made just for my baby.
       </p>
@@ -187,12 +196,21 @@
       modal.className = "letter";
       modal.style.display = "flex";
       modal.innerHTML = `
-        <div class="letter-content" style="text-align:center;">
-          <h2>Nope 😌</h2>
-          <p>Nice try. You know there’s only one right answer.</p>
-          <button class="close-btn" id="tryAgain">Try Again 💘</button>
-        </div>
-      `;
+  <div class="letter-content" style="text-align:center;">
+    <h2>Nope 😌</h2>
+
+    <img src="images/image3.jpg" style="
+      width:100%;
+      max-width:300px;
+      border-radius:14px;
+      margin:15px 0;
+      box-shadow:0 6px 15px rgba(0,0,0,0.3);
+    ">
+
+    <p>Nice try. You know there’s only one right answer.</p>
+    <button class="close-btn" id="tryAgain">Try Again 💘</button>
+  </div>
+`;
       document.body.appendChild(modal);
 
       document.getElementById("tryAgain").onclick = () => {
